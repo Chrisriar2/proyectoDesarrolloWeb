@@ -1,0 +1,74 @@
+<div class="wrapper">
+  <div class="reg-shell">
+    
+    <!-- TARJETA DE SELECCIÓN DE ROL (Header) -->
+    <mat-card class="role-card">
+      <mat-card-header class="role-card-header">
+        <div class="actions-header-colum">
+          <mat-card-title class="title-card">Gestión de Eventos</mat-card-title>
+          <mat-card-subtitle class="subtitle-card">
+            Selecciona tu perfil para acceder a las herramientas escolares
+          </mat-card-subtitle>
+        </div>
+        
+        <!-- Botón de Regresar -->
+        <div class="actions-row">
+          <button mat-icon-button class="back-btn" (click)="goBack()">
+            <mat-icon class="back-icon">arrow_back</mat-icon>
+          </button>
+        </div>
+      </mat-card-header>
+
+      <mat-card-content>
+        <div class="role-row">
+          <mat-radio-group aria-label="Tipo de usuario"
+            [(ngModel)]="user.tipo_usuario"
+            (change)="radioChange($event)">
+
+            <!-- Opción Administrador -->
+            <mat-radio-button class="role-pill" value="administrador"
+               *ngIf="!facadeService.getUserGroup() || facadeService.getUserGroup() === 'administrador'">
+              <mat-icon class="me-1" fontIcon="admin_panel_settings"></mat-icon>
+              <span class="text-radio">Administrador</span>
+            </mat-radio-button>
+
+            <!-- Opción Alumno -->
+            <mat-radio-button class="role-pill" value="alumno"
+               *ngIf="!facadeService.getUserGroup() || facadeService.getUserGroup() === 'alumno'">
+              <mat-icon class="me-1" fontIcon="school"></mat-icon>
+              <span class="text-radio">Alumno</span>
+            </mat-radio-button>
+
+            <!-- Opción Maestro -->
+            <mat-radio-button class="role-pill" value="maestro"
+               *ngIf="!facadeService.getUserGroup() || facadeService.getUserGroup() === 'maestro'">
+              <mat-icon class="me-1" fontIcon="person"></mat-icon>
+              <span class="text-radio">Maestro</span>
+            </mat-radio-button>
+
+          </mat-radio-group>
+        </div>
+      </mat-card-content>
+    </mat-card>
+
+    <!-- ÁREA DE CONTENIDO DINÁMICO -->
+    <div class="forms-area">
+      
+      <!-- CORRECCIÓN 1: Admin usa 'app-eventos-admin' (La tabla con poderes) -->
+      <app-eventos-admin *ngIf="isAdmin"></app-eventos-admin>
+
+      <!-- CORRECCIÓN 2: Alumno usa 'app-eventos-alumno' (Las tarjetas) -->
+      <app-eventos-alumno *ngIf="isAlumno"></app-eventos-alumno>
+
+      <!-- CORRECCIÓN 3: Maestro reutiliza la tabla de Admin (pero en modo lectura gracias al TS) -->
+      <app-eventos-admin *ngIf="isMaestro"></app-eventos-admin>
+
+      <!-- Mensaje inicial si no hay selección -->
+      <div *ngIf="!isAdmin && !isAlumno && !isMaestro" class="no-selection-msg">
+         <p>Por favor selecciona un perfil para continuar</p>
+      </div>
+
+    </div>
+
+  </div>
+</div>

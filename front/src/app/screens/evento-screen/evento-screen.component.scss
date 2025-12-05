@@ -1,0 +1,159 @@
+.wrapper {
+  margin: 0;
+  min-height: 100vh;
+  width: 100%;
+  // Asegúrate que esta ruta exista, si no, ajustala a tu assets/images/
+  background-image: url('/assets/images/fondo-azul.jpg'); 
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.reg-shell {
+  display: grid;
+  gap: 20px;
+  padding: clamp(16px, 3vw, 28px);
+}
+
+.role-card {
+  width: min(100%, 980px);
+  margin-inline: auto;
+
+  .role-card-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between; // Separar título del botón back
+    align-items: center;
+    gap: 4px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid #f0f0f0;
+    margin-bottom: 15px;
+  }
+
+  .actions-header-colum {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 2px;
+  }
+
+  .role-row {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    gap: 12px 20px;
+    margin-top: 5px;
+  }
+
+  .role-pill {
+    display: inline-flex;
+    justify-content: center;
+    text-align: center;
+    padding: 6px 10px;
+  }
+
+  .title-card {
+    font-family: Nexa-Bold, Arial, sans-serif;
+    font-size: clamp(1.5rem, 1.2rem + 1vw, 2rem);
+    margin-bottom: 0.25rem;
+    color: #231F20;
+  }
+
+  .subtitle-card {
+    font-family: Nexa-Light, Arial, sans-serif;
+    font-size: clamp(1rem, 0.8rem + 0.5vw, 1.25rem);
+    color: #555;
+    margin-top: 0.5rem;
+  }
+
+  .text-radio {
+    width: 100%;
+    font-size: 1.25rem;
+    font-family: Nexa, Arial, sans-serif;
+    color: #000000;
+  }
+}
+
+/* Área donde se inyectan los formularios */
+.forms-area {
+  width: min(100%, 980px);
+  margin-inline: auto;
+}
+
+.no-selection-msg {
+  text-align: center;
+  margin-top: 40px;
+  color: white;
+  font-family: Nexa-Light, sans-serif;
+  font-size: 1.2rem;
+  opacity: 0.8;
+}
+
+/* Botón Regresar */
+.actions-row {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.back-btn {
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #f5f5f5; /* Fondo gris claro para resaltar */
+}
+
+.back-icon {
+  font-size: 1.9rem;
+  color: #0092B8;
+  width: auto; height: auto;
+}
+
+/* =========================
+   Estilos Radio Button (Material Overrides)
+   ========================= */
+
+::ng-deep .mat-mdc-radio-button mat-icon {
+  text-align: center;
+  font-size: 2.5rem;
+  color: #0092B8;
+  transition: color 0.3s ease;
+}
+
+::ng-deep .mat-mdc-radio-button .mdc-form-field {
+  color: #231F20;
+  font-family: Nexa, sans-serif;
+  font-size: 20px;
+}
+
+::ng-deep .mat-mdc-radio-button.mat-accent {
+  --mdc-radio-selected-focus-icon-color: #0092B8;
+  --mdc-radio-selected-hover-icon-color: #0092B8;
+  --mdc-radio-selected-icon-color: #0092B8;
+  --mdc-radio-selected-pressed-icon-color: #0092B8;
+  --mat-radio-ripple-color: #000;
+  --mat-radio-checked-ripple-color: #0092B8;
+}
+
+/* Responsive */
+@media (max-width: 700px) {
+  ::ng-deep .mdc-label { width: 180px; }
+  .role-card { padding: 15px; }
+  
+  .role-card-header {
+    flex-direction: column-reverse; /* Pone el botón back arriba en móvil */
+    align-items: flex-end;
+    gap: 10px;
+  }
+  
+  .actions-header-colum { width: 100%; }
+  
+  .role-row {
+    flex-direction: column; 
+    align-items: flex-start;
+    gap: 10px;
+  }
+}

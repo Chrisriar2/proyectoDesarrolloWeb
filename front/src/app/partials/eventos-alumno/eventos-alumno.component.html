@@ -1,0 +1,71 @@
+<div class="container-fluid p-0">
+  <h2 class="mb-4" style="font-family: Nexa-Bold; color: #231F20;">🚀 Próximos Eventos Disponibles</h2>
+
+  <div class="row">
+    <div class="col-12 col-md-6 col-lg-4 mb-4" *ngFor="let evento of listaEventos">
+      
+      <mat-card class="h-100 event-card shadow-sm">
+        <div class="card-header-strip" 
+             [ngClass]="{
+               'bg-info': evento.tipo === 'CONFERENCIA',
+               'bg-warning': evento.tipo === 'TALLER',
+               'bg-success': evento.tipo === 'SEMINARIO',
+               'bg-danger': evento.tipo === 'EXAMEN'
+             }">
+        </div>
+
+        <mat-card-header class="mt-3">
+          <div mat-card-avatar class="event-avatar">
+            <mat-icon>event</mat-icon>
+          </div>
+          <mat-card-title style="font-size: 1.1rem; font-weight: bold;">{{ evento.titulo }}</mat-card-title>
+          <mat-card-subtitle>{{ evento.tipo }}</mat-card-subtitle>
+        </mat-card-header>
+
+        <mat-card-content class="mt-3">
+          <p class="text-muted mb-2">
+            <mat-icon class="align-middle fs-6" style="font-size: 18px; width: 18px; height: 18px; vertical-align: text-bottom;">place</mat-icon> 
+            {{ evento.ubicacion }}
+          </p>
+          <p class="text-muted mb-2">
+            <mat-icon class="align-middle fs-6" style="font-size: 18px; width: 18px; height: 18px; vertical-align: text-bottom;">calendar_today</mat-icon> 
+            {{ evento.fecha_inicio | date:'medium' }}
+          </p>
+          
+          <hr style="opacity: 0.1;">
+          
+          <p class="mt-2 text-justify" style="font-size: 0.95rem;">
+            {{ evento.descripcion || 'Sin descripción disponible.' }}
+          </p>
+          
+          <div class="d-flex justify-content-between align-items-center mt-3">
+            <small class="text-secondary fw-bold">Cupo Total: {{ evento.cupo_maximo }}</small>
+            
+            <span class="badge bg-secondary" *ngIf="esInscrito(evento.id)">¡Ya estás dentro!</span>
+          </div>
+        </mat-card-content>
+
+        <mat-card-actions align="end" class="pb-3 pe-3">
+          
+          <button *ngIf="esInscrito(evento.id)" mat-stroked-button color="warn" (click)="desinscribirse(evento.id)">
+            <mat-icon>cancel</mat-icon> Darse de baja
+          </button>
+
+          <button *ngIf="!esInscrito(evento.id)" mat-raised-button color="primary" (click)="inscribirse(evento.id)">
+            Inscribirme
+          </button>
+
+        </mat-card-actions>
+      </mat-card>
+
+    </div>
+    
+    <div class="col-12" *ngIf="listaEventos.length === 0">
+      <div class="alert alert-light text-center shadow-sm p-5">
+        <mat-icon style="font-size: 40px; width: 40px; height: 40px;" class="text-muted mb-3">event_busy</mat-icon>
+        <h4 class="text-muted">No hay eventos programados</h4>
+        <p class="text-muted">Revisa más tarde para ver nuevas actividades.</p>
+      </div>
+    </div>
+  </div>
+</div>

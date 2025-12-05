@@ -1,0 +1,74 @@
+<div class="modal-container">
+  <div class="modal-header">
+    <h2 mat-dialog-title class="m-0">{{ actionTitle }}</h2>
+    <button mat-icon-button (click)="cerrarModal()">
+      <mat-icon>close</mat-icon>
+    </button>
+  </div>
+
+  <mat-dialog-content class="mat-typography">
+    <div class="row mt-2">
+      
+      <mat-form-field class="col-12" appearance="outline">
+        <mat-label>Título del Evento</mat-label>
+        <mat-icon matPrefix class="me-2 text-muted">label</mat-icon>
+        <input matInput [(ngModel)]="data.titulo" placeholder="Ej. Conferencia de Java">
+      </mat-form-field>
+
+      <mat-form-field class="col-12" appearance="outline">
+        <mat-label>Descripción / Detalles</mat-label>
+        <mat-icon matPrefix class="me-2 text-muted">description</mat-icon>
+        <textarea matInput [(ngModel)]="data.descripcion" rows="3" placeholder="Describe de qué trata el evento..."></textarea>
+      </mat-form-field>
+
+      <div class="col-12">
+        <h4 class="text-muted fs-6 mb-2">Horarios</h4>
+      </div>
+
+      <mat-form-field class="col-12 col-md-6" appearance="outline">
+        <mat-label>Fecha y Hora Inicio</mat-label>
+        <input matInput [(ngModel)]="data.fecha_inicio" type="datetime-local">
+      </mat-form-field>
+      
+      <mat-form-field class="col-12 col-md-6" appearance="outline">
+        <mat-label>Fecha y Hora Fin</mat-label>
+        <input matInput [(ngModel)]="data.fecha_fin" type="datetime-local">
+      </mat-form-field>
+
+      <div class="col-12">
+        <h4 class="text-muted fs-6 mb-2">Logística</h4>
+      </div>
+
+      <mat-form-field class="col-12 col-md-4" appearance="outline">
+        <mat-label>Tipo de Evento</mat-label>
+        <mat-icon matPrefix class="me-2 text-muted">category</mat-icon>
+        <mat-select [(ngModel)]="data.tipo">
+          <mat-option value="CONFERENCIA">Conferencia</mat-option>
+          <mat-option value="TALLER">Taller</mat-option>
+          <mat-option value="SEMINARIO">Seminario</mat-option>
+          <mat-option value="EXAMEN">Examen</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field class="col-12 col-md-4" appearance="outline">
+        <mat-label>Ubicación</mat-label>
+        <mat-icon matPrefix class="me-2 text-muted">place</mat-icon>
+        <input matInput [(ngModel)]="data.ubicacion" placeholder="Ej. Aula 101">
+      </mat-form-field>
+      
+      <mat-form-field class="col-12 col-md-4" appearance="outline">
+        <mat-label>Cupo Máximo</mat-label>
+        <mat-icon matPrefix class="me-2 text-muted">groups</mat-icon>
+        <input matInput type="number" [(ngModel)]="data.cupo_maximo" min="1">
+      </mat-form-field>
+
+    </div>
+  </mat-dialog-content>
+
+  <mat-dialog-actions align="end" class="pb-3 pe-3">
+    <button mat-button (click)="cerrarModal()" color="warn">Cancelar</button>
+    <button mat-raised-button color="primary" (click)="guardarEvento()">
+      <mat-icon class="me-1">save</mat-icon> {{ actionButton }}
+    </button>
+  </mat-dialog-actions>
+</div>

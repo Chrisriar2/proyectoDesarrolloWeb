@@ -1,0 +1,53 @@
+<div class="container-fluid p-4">
+  <div class="row mb-4">
+    <div class="col-12">
+      <h2 class="text-center" style="font-family: Nexa-Bold;">📊 Estadísticas del Sistema</h2>
+      <p class="text-center text-muted">Distribución de usuarios registrados por rol</p>
+    </div>
+  </div>
+
+  <div class="row justify-content-center">
+    
+    <!-- GRÁFICA DE BARRAS -->
+    <div class="col-12 col-lg-6 mb-4">
+      <div class="card shadow-sm h-100">
+        <div class="card-header bg-white font-weight-bold">Total de Usuarios (Barras)</div>
+        <div class="card-body">
+          <canvas baseChart 
+            [data]="barChartData" 
+            [options]="barChartOptions"
+            [type]="barChartType">
+          </canvas>
+        </div>
+      </div>
+    </div>
+
+    <!-- GRÁFICA DE DONA -->
+    <div class="col-12 col-md-6 col-lg-3 mb-4">
+      <div class="card shadow-sm h-100">
+        <div class="card-header bg-white font-weight-bold">Distribución (Dona)</div>
+        <div class="card-body">
+          <canvas baseChart 
+            [data]="doughnutChartData" 
+            [type]="doughnutChartType">
+          </canvas>
+        </div>
+      </div>
+    </div>
+
+    <!-- GRÁFICA DE PIE -->
+    <div class="col-12 col-md-6 col-lg-3 mb-4">
+      <div class="card shadow-sm h-100">
+        <div class="card-header bg-white font-weight-bold">Distribución (Circular)</div>
+        <div class="card-body">
+          <canvas baseChart 
+            [data]="pieChartData" 
+            [options]="pieChartOptions"
+            [type]="pieChartType">
+          </canvas>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
